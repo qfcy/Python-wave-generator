@@ -1,14 +1,14 @@
 **The English documentation is shown below the Chinese version.**
 
-本模块`wave_generator`实现了一套底层的声波生成、音频合成的算法，提供了生成正弦波、三角波、方波，生成白噪声、红噪声，音频拼接和反转，音量调节，混音，离散傅里叶变换等多种功能。
-并提供了与`wave`模块的接口，用于支持`wav`格式。程序还实现了调用`matplotlib`库显示波形以及频谱的功能。
-由于生成器能够生成音频流，程序内部使用了生成器实现。
+本模块`wave_generator`实现了一套底层的声波生成、音频合成的算法，提供了生成正弦波、三角波、方波，生成白噪声、红噪声，音频拼接和反转，音量调节，混音，离散傅里叶变换等多种功能。  
+并提供了与`wave`模块的接口，用于支持`wav`格式。程序还实现了调用`matplotlib`库显示波形以及频谱的功能。  
+由于生成器能够生成音频流，程序内部使用了生成器实现。  
 ## 0.模块使用的生成器接口
 生成器用于生成音频数据流，输出的每个值都是整数。
 **生成器输出值的范围**
-在位宽为8位时，输出值的取值范围为[0,256)，也就是`unsigned char`类型，和wav文件内部使用的类型相同。
-位宽为16位时，取值范围为[0,65536)，也就是`unsigned short`类型。
-不过位宽为16位时，wav文件的内部是有符号的`short`类型。由于`to_raw_data`函数已经实现了类型转换，为了简化生成器的实现，生成器依然使用`unsigned short`，这一点在`pyaudio`中写入生成器输出的值时需要注意。
+在位宽为8位时，输出值的取值范围为[0,256)，也就是`unsigned char`类型，和wav文件内部使用的类型相同。  
+位宽为16位时，取值范围为[0,65536)，也就是`unsigned short`类型。  
+不过位宽为16位时，wav文件的内部是有符号的`short`类型。由于`to_raw_data`函数已经实现了类型转换，为了简化生成器的实现，生成器依然使用`unsigned short`，这一点在`pyaudio`中写入生成器输出的值时需要注意。  
 
 ## 各个函数的说明文档
 
@@ -42,7 +42,7 @@
 
 #### 5. `integral(generator, volume, sampwidth)`
 
-对`generator`音频信号进行积分，并会自动处理值到达上下限的情况。
+对`generator`音频信号进行积分，并会自动处理值到达上下限的情况。  
 如果`generator`是一个白噪声，则可以生成粉红噪声。
 
 - **参数：**
@@ -287,8 +287,8 @@ As the generator can produce audio streams, the program internally uses generato
 ## 0. Generator Interface Used by the Module
 Generators are used to produce audio data streams, with each output value being an integer.
 **Range of Generator Output Values:**
-When the bit width is 8 bits, the range of output values is [0,256), which is the same as the `unsigned char` type used internally in wav files.
-When the bit width is 16 bits, the range is [0,65536), which is the `unsigned short` type.
+When the bit width is 8 bits, the range of output values is [0,256), which is the same as the `unsigned char` type used internally in wav files.  
+When the bit width is 16 bits, the range is [0,65536), which is the `unsigned short` type.  
 However, when the bit width is 16 bits, the internal representation in wav files is a signed `short` type. Since the `to_raw_data` function has already implemented type conversion, in order to simplify the implementation of the generator, the generator still uses `unsigned short`. This needs to be noted when writing the values output by the generator to `pyaudio`.
 
 ## Documentation of Each Function
